@@ -1,5 +1,14 @@
 from cvxopt.solvers import qp
 from cvxopt.base import matrix
+from kernel import linearK
+from kernel import polyK
+from kernel import radialK
+from kernel import sigmoidK
+from kernel import sigmoidK
+from build import buildP
+from build import buildq
+from build import buildh
+from build import buildG
 
 import numpy, pylab, random, math
 
@@ -16,32 +25,13 @@ def createData():
 	xs = classA + classB
 	random.shuffle(xs)
 
-
-def linearK(x, y):
-	s = 1;
-	for i in range(2):
-		s+= (x[i] * y[i])
-	return s
-
-def polyK(x,y,p):
-	return pow(linearK(x,y),p)
-
-def radialK(x,y,sigma):
-	diff = range(2)
-	for i in range(2):
-		diff[i] = x[i] - y[i]
-	val = 0
-	for i in range(2):
-		val += diff[i] * diff[i]
-	return math.exp(-(val) / (2 * sigma * sigma))
-
-def sigmoidK(x,y,k,delta):
-	val = 0;
-	for i in range(2):
-		val += x[i]*y[i]
-	val *= k
-	val - delta
-	return math.tanh(val)
+def buildP(xs,ker):
+	P = range(len(xs))
+	for i in range(len(xs)):
+		P[i] = range(len(xs))
+		for j in range(len(xs)):
+			P[i][j] = xs[i][2]*xs[j][2]*ker(xs[i], xs[j])
+	return P
 
 def run(ker):
 	pass
