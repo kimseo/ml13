@@ -12,7 +12,7 @@ def linearK(x, y):
 def polyK(x,y,p):
 	return pow(linearK(x,y),p)
 
- def radialK(x,y,sigma):
+def radialK(x,y,sigma):
 	diff = range(2)
 	for i in range(2):
 		diff[i] = x[i] - y[i]
