@@ -41,7 +41,7 @@ def sigmoidK(x,y,k,delta):
 		val += x[i]*y[i]
 	val *= k
 	val - delta
-	return val
+	return math.tanh(val)
 
 def run(ker):
 	pass
