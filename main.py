@@ -143,7 +143,7 @@ if __name__ == "__main__":
 		if False == slack:
 			run(ker)
 		else:
-			runWS(linearK)
+			runWS(ker)
 	else:
 		cPickle.dump(Trainingsets, open(filename, 'wb'))
 		cPickle.dump(Xclass, open(filename+"-A", 'wb'))

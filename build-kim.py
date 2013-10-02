@@ -35,6 +35,7 @@ def buildG(xs):
 
 # N x N with SlackV
 def buildhWS(xs,C=100):
+	print "SlackV " + str(C)
 	h = range(2*len(xs))
 	for i in range(len(xs)):
 		h[i] = 0.0
