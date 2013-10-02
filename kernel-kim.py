@@ -9,10 +9,10 @@ def linearK(x, y):
 		s+= (x[i] * y[i])
 	return s
 
-def polyK(x,y,p):
+def polyK(x,y,p=2):
 	return pow(linearK(x,y),p)
 
-def radialK(x,y,sigma):
+def radialK(x,y,sigma=12):
 	diff = range(2)
 	for i in range(2):
 		diff[i] = x[i] - y[i]
@@ -27,5 +27,5 @@ def sigmoidK(x,y,k,delta):
 		val += x[i]*y[i]
 	val *= k
 	val - delta
-	return val
+	return math.tanh(val)
 
