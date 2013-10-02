@@ -32,7 +32,7 @@ def run(ker):
 	h = buildh(Trainingsets)
 	G = buildG(Trainingsets)
 	alphas = callQP(P,q,G,h)
-	SVectors = extractSupportVectors(Trainingsets, alphas)
+	SVectors = PickoutNonzeroAlpha(Trainingsets, alphas)
 	Plotresult(SVectors, ker)
 
 def runWS(ker):
@@ -41,7 +41,7 @@ def runWS(ker):
 	h = buildhWS(Trainingsets,slackV)
 	G = buildGWS(Trainingsets)
 	alphas = callQP(P,q,G,h)
-	SVectors = extractSupportVectors(Trainingsets, alphas)
+	SVectors = PickoutNonzeroAlpha(Trainingsets, alphas)
 	Plotresult(SVectors, ker)
 
 def callQP(P, q, G, h):
