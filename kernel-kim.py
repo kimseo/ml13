@@ -21,12 +21,12 @@ def radialK(x,y,sigma=5):
 		val += diff[i] * diff[i]
 	return math.exp(-(val) / (2 * sigma * sigma))
 
-def sigmoidK(x,y,k=2,delta=0.1):
+def sigmoidK(x,y,k=0.5,delta=-0.01):
 	val = 0;
 	for i in range(2):
 		val += x[i]*y[i]
 	val *= k
 	val -= delta
 #	return val
-#	return math.tanh(val)
+	return math.tanh(val)
 

@@ -19,10 +19,23 @@ Yclass = []
 Trainingsets = []
 
 sz = 5 
-def create():
+def create(level=2):
 	global Xclass, Yclass, Trainingsets
-	Xclass = [(random.normalvariate(-1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)] + [(random.normalvariate(1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)]
-	Yclass = [(random.normalvariate(0, 0.5), random.normalvariate(-.5, .5), -1.0) for i in range(sz*2)]
+#	Xclass = [(random.normalvariate(-1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)] + [(random.normalvariate(1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)]
+#	Yclass = [(random.normalvariate(0, 0.5), random.normalvariate(-.5, .5), -1.0) for i in range(sz*2)]
+#
+	if 1 == level:
+		Xclass = [(random.normalvariate(-2.5, 1), random.normalvariate(2.5, 1), 1.0) for i in range(sz*2)]
+		Yclass = [(random.normalvariate(2.5, 0.5), random.normalvariate(-2.5, .5), -1.0) for i in range(sz*2)]
+	elif 2 == level:
+		Xclass = [(random.normalvariate(-1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)] + [(random.normalvariate(1.5, 1), random.normalvariate(.5, 1), 1.0) for i in range(sz)]
+		Yclass = [(random.normalvariate(0, 0.5), random.normalvariate(-.5, .5), -1.0) for i in range(sz*2)]
+	elif 3 == level:
+		Xclass = [(random.normalvariate(0.2, 1), random.normalvariate(.8, 1), 1.0) for i in range(sz*2)]
+		Yclass = [(random.normalvariate(-0.2, 0.5), random.normalvariate(.1, .5), -1.0) for i in range(sz*2)]
+	
+		pass
+
 	Trainingsets = Xclass + Yclass
 	random.shuffle(Trainingsets)
 
@@ -65,11 +78,11 @@ def show(alphas,ker):
 	Plotresult(SVectors, ker)
 
 # val > 0 : 1.0 or val < 0 : -1.0
-def indicate(x, SVectors,ker):
+def indicate(point, SVectors,ker):
 	val = 0
 	for i in range(len(SVectors)):
-		a,y = SVectors[i]
-		val += a * y[2] * ker(x,y)
+		alpha, data = SVectors[i]
+		val += alpha * data[2] * ker(point,data) #data[2] == -1 or 1
 	return val
 
 def PickoutNonzeroAlpha(Trainingsets, alphas):
