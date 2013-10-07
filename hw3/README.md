@@ -1,3 +1,5 @@
+The best object recognition performance is achieved when the training image shows the book alone. We would like to remove the hand holding the book from the image.
+
 main.m (main)
 
 lab1 (morning tomorrow)
